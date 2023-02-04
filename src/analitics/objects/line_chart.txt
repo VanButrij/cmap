@@ -1,0 +1,107 @@
+// import React from 'react'
+// import { useEffect } from 'react'
+// import styles from '../../Style/Objects/line_chart.module.css'
+// import * as d3 from 'd3'
+
+// const Line_Chart = () => {
+
+//     let container = React.createRef()
+
+//     const drawChart = () => {
+
+//         const width = 300
+//         const height = 200
+//         const margin = { top: 300, right: 50, bottom: 50, left: 300}
+//         const data: Array<object> = []
+
+//         const yMinValue = d3.min(data, d => d.value)
+//         const yMaxValue = d3.max(data, d => d.value)
+//         const xMinValue = d3.min(data, d => d.dim1)
+//         const xMaxValue = d3.max(data, d => d.dim1)
+
+//         const svg = d3  
+//             .select('#container')
+//             .append('svg')
+//             .attr('width', width + margin.left + margin.right)
+//             .attr('height', height + margin.top + margin.bottom)
+//             .append('g')
+//             .attr('transform', `translate(${margin.left}, ${margin.top})`)
+
+//         const xScale = d3
+//             .scaleBand()
+//             .domain(data.map(d => d.dim1))
+//             .range([0, width])
+
+//         const yScale = d3
+//             .scaleLinear()
+//             .range([height, 0])
+//             .domain([0, yMaxValue])
+        
+//         svg
+//             .append('g')
+//             .attr('class', 'grid')
+//             .attr('transform', `translate(0,${height})`)
+//             .call(
+//                 d3.axisBottom(xScale)
+//                     .tickSize(-height)
+//                     .tickFormat('')
+//             )
+        
+//         svg
+//             .append('g')
+//             .attr('class', 'grid')
+//             .call(
+//                 d3.axisLeft(yScale)
+//                     .tickSize(-width)
+//                     .tickFormat('')
+//             )
+
+//         svg
+//             .append('g')
+//             .attr('class', 'x-axis')
+//             .attr('transform', `translate(0, ${height})`)
+//             .call(d3.axisBottom().scale(xScale).tickSize(15))
+
+//         svg
+//             .append('g')
+//             .attr('class', 'y-axis')
+//             .call(d3.axisLeft(yScale))  
+            
+//         const line = d3
+//                 .line()
+//                 .x(d => xScale(d.dim1))
+//                 .y(d => yScale(d.value))
+//  //               .curve(d3.curveMonotoneX)
+
+//         svg
+//             .append('path')
+//             .datum(data)
+//             .attr('fill', 'none')
+//             .attr('stroke', '#00682e')
+//             .attr('stroke-width', 3)
+//             .attr('class', 'line')
+//             .attr('d', line)
+
+//     }
+
+//     useEffect(() => {
+        
+//         while(container.current.firstChild){
+//             container.current.removeChild(container.current.firstChild)
+//         }
+        
+//         if(props.keys.length !== 0) {
+//             drawChart()
+//         }
+//     })
+
+
+//     return (
+//         <div className={styles.root}>
+//             <div ref={container} id='container'/>
+//         </div>
+//     )
+
+// }
+
+// export default Line_Chart
